@@ -1,0 +1,41 @@
+{
+    "name": "Stade",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codePostal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ville",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "club",
+            "otherEntityRelationshipName": "stade",
+            "relationshipName": "club",
+            "otherEntityField": "nom"
+        }
+    ],
+    "changelogDate": "20200413172700",
+    "entityTableName": "stade",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

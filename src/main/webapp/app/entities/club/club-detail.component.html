@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="club">
+            <h2><span jhiTranslate="plateaufootApp.club.detail.title">Club</span> {{ club.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plateaufootApp.club.logo">Logo</span></dt>
+                <dd>
+                    <div *ngIf="club.logo">
+                        <a (click)="openFile(club?.logoContentType!, club?.logo)">
+                            <img [src]="'data:' + club.logoContentType + ';base64,' + club.logo" style="max-width: 100%;" alt="club image"/>
+                        </a>
+                        {{ club.logoContentType }}, {{ byteSize(club.logo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.club.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ club.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.club.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ club.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.club.telephone">Telephone</span></dt>
+                <dd>
+                    <span>{{ club.telephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.club.email">Email</span></dt>
+                <dd>
+                    <span>{{ club.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.club.categorie">Categorie</span></dt>
+                <dd>
+                    <span *ngFor="let categorie of club.categories; let last = last">
+                        <a [routerLink]="['/categorie', categorie?.id, 'view']">{{ categorie.section }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/club', club.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

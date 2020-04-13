@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="referent">
+            <h2><span jhiTranslate="plateaufootApp.referent.detail.title">Referent</span> {{ referent.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plateaufootApp.referent.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ referent.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.referent.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{ referent.prenom }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.referent.licence">Licence</span></dt>
+                <dd>
+                    <span>{{ referent.licence }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.referent.telephone">Telephone</span></dt>
+                <dd>
+                    <span>{{ referent.telephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.referent.email">Email</span></dt>
+                <dd>
+                    <span>{{ referent.email }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/referent', referent.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

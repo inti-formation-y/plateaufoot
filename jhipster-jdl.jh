@@ -1,0 +1,48 @@
+entity Club {
+	logo ImageBlob,
+    nom String required,
+    adresse String,
+    telephone String,
+    email String
+}
+entity Stade {
+	nom String,
+    adresse String,
+    codePostal String,
+    ville String
+}
+entity Categorie {
+	section Section,
+    descrition String
+}
+enum Section {
+	U6, U7, U8, U9
+}
+
+entity Referent {
+	nom String,
+    prenom String,
+    licence String,
+    telephone String,
+    email String
+}
+
+entity Plateau {
+	dateDebut LocalDate,
+    dateFin LocalDate,
+    heureDebut String,
+    heureFin String,
+    adresse String,
+    nbrEquipe Integer
+}
+relationship OneToMany {
+	Club{stade(nom)} to Stade{club(nom)} 
+}
+relationship ManyToMany {
+    Club{categorie(section)} to Categorie{club(nom)}
+}
+
+relationship ManyToOne {
+    Plateau{referent(nom)} to Referent
+}
+paginate Plateau, Club, Stade with infinite-scroll

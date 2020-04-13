@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stade">
+            <h2><span jhiTranslate="plateaufootApp.stade.detail.title">Stade</span> {{ stade.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plateaufootApp.stade.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ stade.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.stade.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ stade.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.stade.codePostal">Code Postal</span></dt>
+                <dd>
+                    <span>{{ stade.codePostal }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.stade.ville">Ville</span></dt>
+                <dd>
+                    <span>{{ stade.ville }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.stade.club">Club</span></dt>
+                <dd>
+                    <div *ngIf="stade.club">
+                        <a [routerLink]="['/club', stade.club?.id, 'view']">{{ stade.club?.nom }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stade', stade.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

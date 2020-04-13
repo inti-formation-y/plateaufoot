@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="plateau">
+            <h2><span jhiTranslate="plateaufootApp.plateau.detail.title">Plateau</span> {{ plateau.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="plateaufootApp.plateau.dateDebut">Date Debut</span></dt>
+                <dd>
+                    <span>{{ plateau.dateDebut }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.dateFin">Date Fin</span></dt>
+                <dd>
+                    <span>{{ plateau.dateFin }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.heureDebut">Heure Debut</span></dt>
+                <dd>
+                    <span>{{ plateau.heureDebut }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.heureFin">Heure Fin</span></dt>
+                <dd>
+                    <span>{{ plateau.heureFin }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ plateau.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.nbrEquipe">Nbr Equipe</span></dt>
+                <dd>
+                    <span>{{ plateau.nbrEquipe }}</span>
+                </dd>
+                <dt><span jhiTranslate="plateaufootApp.plateau.referent">Referent</span></dt>
+                <dd>
+                    <div *ngIf="plateau.referent">
+                        <a [routerLink]="['/referent', plateau.referent?.id, 'view']">{{ plateau.referent?.nom }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/plateau', plateau.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

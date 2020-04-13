@@ -43,6 +43,14 @@ public class CacheConfiguration {
             createCache(cm, fr.formation.inti.domain.User.class.getName());
             createCache(cm, fr.formation.inti.domain.Authority.class.getName());
             createCache(cm, fr.formation.inti.domain.User.class.getName() + ".authorities");
+            createCache(cm, fr.formation.inti.domain.Club.class.getName());
+            createCache(cm, fr.formation.inti.domain.Club.class.getName() + ".stades");
+            createCache(cm, fr.formation.inti.domain.Club.class.getName() + ".categories");
+            createCache(cm, fr.formation.inti.domain.Stade.class.getName());
+            createCache(cm, fr.formation.inti.domain.Categorie.class.getName());
+            createCache(cm, fr.formation.inti.domain.Referent.class.getName());
+            createCache(cm, fr.formation.inti.domain.Plateau.class.getName());
+            createCache(cm, fr.formation.inti.domain.Categorie.class.getName() + ".clubs");
             // jhipster-needle-ehcache-add-entry
         };
     }

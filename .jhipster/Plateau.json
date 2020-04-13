@@ -1,0 +1,49 @@
+{
+    "name": "Plateau",
+    "fields": [
+        {
+            "fieldName": "dateDebut",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateFin",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "heureDebut",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "heureFin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nbrEquipe",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "referent",
+            "otherEntityRelationshipName": "plateau",
+            "relationshipName": "referent",
+            "otherEntityField": "nom"
+        }
+    ],
+    "changelogDate": "20200413173000",
+    "entityTableName": "plateau",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

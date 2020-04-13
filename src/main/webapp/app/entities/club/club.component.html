@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="plateaufootApp.club.home.title">Clubs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-club" [routerLink]="['/club/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="plateaufootApp.club.home.createLabel">
+            Create a new Club
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="clubs?.length === 0">
+        <span jhiTranslate="plateaufootApp.club.home.notFound">No clubs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="clubs?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="logo"><span jhiTranslate="plateaufootApp.club.logo">Logo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nom"><span jhiTranslate="plateaufootApp.club.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adresse"><span jhiTranslate="plateaufootApp.club.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="plateaufootApp.club.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="plateaufootApp.club.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let club of clubs ;trackBy: trackId">
+                    <td><a [routerLink]="['/club', club.id, 'view']">{{ club.id }}</a></td>
+                    <td>
+                        <a *ngIf="club.logo" (click)="openFile(club.logoContentType, club.logo)">
+                            <img [src]="'data:' + club.logoContentType + ';base64,' + club.logo" style="max-height: 30px;" alt="club image"/>
+                        </a>
+                        <span *ngIf="club.logo">{{ club.logoContentType }}, {{ byteSize(club.logo) }}</span>
+                    </td>
+                    <td>{{ club.nom }}</td>
+                    <td>{{ club.adresse }}</td>
+                    <td>{{ club.telephone }}</td>
+                    <td>{{ club.email }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/club', club.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/club', club.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(club)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
